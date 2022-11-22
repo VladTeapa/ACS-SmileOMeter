@@ -5,6 +5,7 @@ import json
 import glob
 import cv2
 import pickle
+import pandas
 from sklearn.model_selection import train_test_split
 def GenerateModel():
     model = tf.keras.models.Sequential()
@@ -89,7 +90,25 @@ def train(model, X, Y):
     with open('./trainingHistory3', 'wb') as file_pi:
         pickle.dump(h.history, file_pi)
         file_pi.close()
-X, Y = getData('./train','./labels.txt')
-model = GenerateModel()
-train(model, X, Y)
+def test(model, pathModel):
+    model.load_weights(pathModel)
+    X, Y = getData('./CNN/test', './CNN/labels.txt')
+    Y_pred = model.predict(X)
+    Y_pred = np.array(Y_pred)
+    conf = np.zeros(shape=(Y.shape[1],Y.shape[1]))
+    for i in range(Y_pred.shape[0]):
+        indexOrg = np.argmax(Y[i])
+        indexPred = np.argmax(Y_pred[i])
+        conf[indexOrg][indexPred] = conf[indexOrg][indexPred]+1
+    pandas.DataFrame(conf).to_csv('a.csv')
+    sum = 0
+    for i in range(Y_pred.shape[1]):
+        sum = sum + conf[i][i]
+    sum = sum/Y_pred.shape[0]
+    print(sum)
+    print(conf)
 
+#X, Y = getData('./train','./labels.txt')
+model = GenerateModel()
+#train(model, X, Y)
+test(model, './CNN/modelCNN3')
