@@ -1,5 +1,6 @@
 venv/
-logs*/
-train/*
-test/*
-model*
+CNN/logs*/
+CNN/train/*
+CNN/test/*
+CNN/model*
+CNN/checkpoint
