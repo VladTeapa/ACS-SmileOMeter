@@ -6,3 +6,5 @@ glob2
 sklearn
 opencv-python
 pandas
+fer-pytorch
+fer
