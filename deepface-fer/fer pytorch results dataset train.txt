@@ -1,0 +1,7 @@
+1441 / 1441, percentage correct: 0.0%, average time: 1.4550439448993795
+53 / 72, percentage correct: 26.38888888888889%, average time: 2.8416657930555593
+1173 / 1288, percentage correct: 8.928571428571429%, average time: 1.582122467391307
+382 / 2727, percentage correct: 85.99193252658598%, average time: 1.335404999596643
+200 / 2069, percentage correct: 90.3334944417593%, average time: 1.232080043112617
+1160 / 1577, percentage correct: 26.442612555485102%, average time: 1.5743649169308593
+382 / 1253, percentage correct: 69.51316839584996%, average time: 1.2662777532322385
