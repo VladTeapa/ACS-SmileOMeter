@@ -4,3 +4,5 @@ CNN/train/*
 CNN/test/*
 CNN/model*
 CNN/checkpoint
+SmileOMeter/node_modules/*
+SmileOMeter/.vscode/*
