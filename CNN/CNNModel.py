@@ -100,7 +100,8 @@ def toGray(x):
             newX[i][j] = x[i][j][0]
     return newX
 
-
+def printModel(model):
+    tf.keras.utils.plot_model(model, to_file='./model.png', show_shapes=True)
 
 def getData(trainPath, trainTxt):
     labels = []
@@ -161,4 +162,5 @@ def test(model, pathModel):
 #X, Y = getData('./CNN/train','./CNN/labels.txt')
 model = GenerateModelV2()
 #train(model, X, Y)
-test(model, './CNN/modelCNN5Bigger')
+#test(model, './CNN/modelCNN5Bigger')
+printModel(model)
