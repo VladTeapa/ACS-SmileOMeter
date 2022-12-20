@@ -10,11 +10,12 @@ from deepface import DeepFace
 import time
 from fer_pytorch.fer import FER
 import numpy as np
-
-from CNN.CNNModel import apply_CNN
+import sys
+sys.path.insert(0,'../CNN')
+from CNNModel import apply_CNN
 
 # path = "dataset\\train\\"
-path = "dataset\\test\\"
+path = "\\test\\"
 emotions = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 # totalImages = [3995, 436, 4097, 7215, 4965, 4830, 3171]
 totalImages = [958, 111, 1024, 1774, 1233, 1247, 831]
@@ -125,6 +126,8 @@ def get_results_CNN(img):
     result = result[0]
     return result
 
+
+
 def get_voting_based(img_path):
     img = cv2.imread(img_path)
     result_deepface = get_results_deepface(img_path)
@@ -137,7 +140,7 @@ def get_voting_based(img_path):
     # print(result_fer)
     # print("result_CNN")
     # print(result_CNN)
-    result_CNN = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
+    # result_CNN = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
 
     result = []
     if result_fer == "":
@@ -149,6 +152,9 @@ def get_voting_based(img_path):
     # sort the emotions in descending order
     result = dict(zip(emotions, result))
     result = dict(sorted(result.items(), key=lambda item: item[1], reverse=True))
+    factor=1.0/sum(result.values())
+    for k in result:
+        result[k] = result[k]*factor
     return result
 
 def apply_voting_based_top(img_path):
@@ -200,13 +206,13 @@ def count():
                   "%, average time: " + str(total_time / real_count))
 
 if __name__ == '__main__':
-    img_path = path + "happy\\im0.png"
-    img = cv2.imread(img_path)
-    result = get_voting_based(img_path)
-    print(result)
-    print(list(result.keys())[0])
+    #img_path = path + "happy\\im0.png"
+    #img = cv2.imread(img_path)
+    #result = get_voting_based(img_path)
+    #print(result)
+    #print(list(result.keys())[0])
 
-    # count()
+    count()
     # cv2.waitKey(0)
 
 
