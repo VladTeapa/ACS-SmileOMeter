@@ -107,6 +107,7 @@ def toGray(x):
     return newX
 
 
+
 def printModel(model):
     tf.keras.utils.plot_model(model, to_file='./model.png', show_shapes=True)
 
@@ -186,3 +187,4 @@ model = GenerateModelV2()
 # train(model, X, Y)
 # test(model, './CNN/modelCNN5Bigger')
 # printModel(model)
+
