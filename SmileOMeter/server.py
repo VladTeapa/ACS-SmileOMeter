@@ -4,6 +4,11 @@ import io
 import cgi
 import cv2
 import base64
+import json
+import sys
+sys.path.insert(0, './deepface-fer')
+sys.path.insert(0, './CNN')
+from main import get_voting_based
 PORT = 44444
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def modify_image(self,img):
@@ -18,13 +23,18 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         print(r, info, "by: ", self.client_address)
         f = io.BytesIO()
         img = cv2.imread('image')
-        img = self.modify_image(img)
+        #img = self.modify_image(img)
+        imgResized = cv2.resize(img, (48,48))
+        cv2.imwrite('temp.jpeg', imgResized)
+        res = get_voting_based('temp.jpeg')
+        
         retval, buffer = cv2.imencode('.jpeg',img)
         jpg_as_text = base64.b64encode(buffer)
         if r:
             f.write(bytes('{"data":"',"utf-8"))
             f.write(jpg_as_text)
-            f.write(bytes('"}',"utf-8"))
+            f.write(bytes('","emotions":'+json.dumps(res),"utf-8"))
+            f.write(bytes('}',"utf-8"))
         else:
             f.write(b"Failed\n")
         length = f.tell()

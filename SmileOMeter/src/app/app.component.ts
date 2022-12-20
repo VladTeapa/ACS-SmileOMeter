@@ -15,6 +15,13 @@ export class AppComponent implements OnInit{
   public webcamImage!: WebcamImage;
   private nextWebcam: Subject<any> = new Subject();
   private sendJpegService: SendJpegService;
+  public angry: number=0;
+  public sad: number=0;
+  public neutral: number=0;
+  public surprise: number=0;
+  public fear: number=0;
+  public happy: number=0;
+  public disgust: number=0;
   public imagePath: String;
   sysImage = '';
   constructor(service: SendJpegService, private _sanitizer: DomSanitizer){
@@ -52,10 +59,18 @@ export class AppComponent implements OnInit{
         console.info(response)
         this.imagePath = new String('data:image/jpg;base64,' 
                  + response['data']);
+        this.angry = response['emotions']['angry']
+        this.sad = response['emotions']['sad']
+        this.disgust = response['emotions']['disgust']
+        this.fear = response['emotions']['fear']
+        this.happy = response['emotions']['happy']
+        this.surprise = response['emotions']['surprise']
+        this.neutral = response['emotions']['neutral']
         this.getSnapshot();
       },
       (error: any) => {
-        console.info(error)
+        console.info(error['error']['text'])
+        this.getSnapshot();
       }
     );
     console.info('got webcam image', this.sysImage);
