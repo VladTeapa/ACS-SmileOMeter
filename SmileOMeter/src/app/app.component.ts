@@ -68,40 +68,40 @@ export class AppComponent implements OnInit{
         this.imagePath = new String('data:image/jpg;base64,' 
                  + response['data']);
         
-        this.angry = response['emotions']['angry']
+        this.angry = Math.floor(response['emotions']['angry']*100)
         this.max = this.angry;
         this.maxString = 'angry';
-        this.sad = response['emotions']['sad']
+        this.sad = Math.floor(response['emotions']['sad']*100)
         if(this.sad > this.max)
         {
           this.max = this.sad;
           this.maxString = 'sad';
         }
-        this.disgust = response['emotions']['disgust']
+        this.disgust = Math.floor(response['emotions']['disgust']*100)
         if(this.disgust > this.max)
         {
           this.max = this.disgust;
           this.maxString = 'disgust';
         }
-        this.fear = response['emotions']['fear']
+        this.fear = Math.floor(response['emotions']['fear']*100)
         if(this.fear > this.max)
         {
           this.max = this.fear;
           this.maxString = 'fear';
         }
-        this.happy = response['emotions']['happy']
+        this.happy = Math.floor(response['emotions']['happy']*100)
         if(this.happy > this.max)
         {
           this.max = this.happy;
           this.maxString = 'happy';
         }
-        this.surprise = response['emotions']['surprise']
+        this.surprise = Math.floor(response['emotions']['surprise']*100)
         if(this.surprise > this.max)
         {
           this.max = this.surprise;
           this.maxString = 'surprise';
         }
-        this.neutral = response['emotions']['neutral']
+        this.neutral = Math.floor(response['emotions']['neutral']*100)
         if(this.neutral > this.max)
         {
           this.max = this.neutral;
