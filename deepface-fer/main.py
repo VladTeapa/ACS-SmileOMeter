@@ -20,10 +20,10 @@ emotions = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 # totalImages = [3995, 436, 4097, 7215, 4965, 4830, 3171]
 totalImages = [958, 111, 1024, 1774, 1233, 1247, 831]
 
-# results from sprint 2:
-accuracyDeepface = [42.80, 44.14, 41.41, 76.38, 56.20, 41.78, 70.40]
-accuracyPyTorchFER = [31.81, 27.27, 6.04, 86.79, 90.53, 24.33, 66.77]
-accuracyCNN = [36.32, 24.32, 31.83, 77.67, 42.49, 43.70, 65.34]
+# results from sprint 3:
+accuracyDeepface = [42.8, 94.14, 41.41, 76.38, 56.2, 41.78, 70.4]
+accuracyPyTorchFER = [31.81, 27.27, 6.04, 136.79, 140.53, 24.33, 66.77]
+accuracyCNN = [35.07, 24.32, 31.54, 78.07, 43.14, 94.34, 64.74]
 
 # here we calculate the weights for the voting algorithm
 sum_all = np.array(accuracyDeepface) + np.array(accuracyPyTorchFER) + np.array(accuracyCNN)
