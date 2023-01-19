@@ -1,0 +1,7 @@
+549 / 958, percentage correct: 42.693110647181626
+64 / 111, percentage correct: 42.34234234234234
+606 / 1024, percentage correct: 40.8203125
+302 / 1774, percentage correct: 82.97632468996618
+635 / 1233, percentage correct: 48.499594484995946
+1124 / 1247, percentage correct: 9.863672814755413
+565 / 831, percentage correct: 32.009626955475326

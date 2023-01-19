@@ -1,0 +1,7 @@
+*
+*
+*
+*
+2929 / 4965, percentage correct: 41.007049345417926%, average time: 0.7339707927693785
+4268 / 4830, percentage correct: 11.635610766045549%, average time: 1.202097991759815
+2492 / 3171, percentage correct: 21.41280353200883%, average time: 0.6312469047303668

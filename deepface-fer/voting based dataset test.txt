@@ -1,0 +1,7 @@
+555 / 958, percentage correct: 42.06680584551148%, average time: 0.7027533682672275
+66 / 111, percentage correct: 40.54054054054054%, average time: 0.6689796198198137
+616 / 1024, percentage correct: 39.84375%, average time: 0.6747448012695294
+333 / 1774, percentage correct: 81.22886133032694%, average time: 0.7542959928410364
+632 / 1233, percentage correct: 48.74290348742903%, average time: 1.2257071578264378
+1105 / 1247, percentage correct: 11.387329591018444%, average time: 1.0942462809141933
+645 / 831, percentage correct: 22.382671480144403%, average time: 1.7089251354993709
