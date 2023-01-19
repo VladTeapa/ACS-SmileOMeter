@@ -23,10 +23,18 @@ export class AppComponent implements OnInit{
   public happy: number=0;
   public disgust: number=0;
   public imagePath: String;
+
+  public lastEmotion: String;
+
+  private max: number;
+  private maxString: String;
   sysImage = '';
   constructor(service: SendJpegService, private _sanitizer: DomSanitizer){
     this.sendJpegService = service;
     this.imagePath = "";
+    this.lastEmotion = "";
+    this.max = 0;
+    this.maxString = "";
   }
   ngOnInit() {
   }
@@ -56,16 +64,65 @@ export class AppComponent implements OnInit{
     this.sysImage = webcamImage!.imageAsDataUrl;
     this.sendJpegService.getImage(file).subscribe(
       (response: JpegResponse) => {
-        console.info(response)
+        console.info(response);
         this.imagePath = new String('data:image/jpg;base64,' 
                  + response['data']);
+        
         this.angry = response['emotions']['angry']
+        this.max = this.angry;
+        this.maxString = 'angry';
         this.sad = response['emotions']['sad']
+        if(this.sad > this.max)
+        {
+          this.max = this.sad;
+          this.maxString = 'sad';
+        }
         this.disgust = response['emotions']['disgust']
+        if(this.disgust > this.max)
+        {
+          this.max = this.disgust;
+          this.maxString = 'disgust';
+        }
         this.fear = response['emotions']['fear']
+        if(this.fear > this.max)
+        {
+          this.max = this.fear;
+          this.maxString = 'fear';
+        }
         this.happy = response['emotions']['happy']
+        if(this.happy > this.max)
+        {
+          this.max = this.happy;
+          this.maxString = 'happy';
+        }
         this.surprise = response['emotions']['surprise']
+        if(this.surprise > this.max)
+        {
+          this.max = this.surprise;
+          this.maxString = 'surprise';
+        }
         this.neutral = response['emotions']['neutral']
+        if(this.neutral > this.max)
+        {
+          this.max = this.neutral;
+          this.maxString = 'neutral';
+        }
+        if(this.lastEmotion!="")
+        {
+            let lielem = document.getElementById(this.lastEmotion+'Li');
+            if(lielem!=null)
+            {
+              lielem.style.color = 'black';
+              lielem.style.fontWeight = '';
+            }
+            lielem = document.getElementById(this.maxString+'Li');
+            if(lielem!=null)
+            {
+              lielem.style.color = 'red';
+              lielem.style.fontWeight = 'bold';
+            }
+        }
+        this.lastEmotion = this.maxString;
         this.getSnapshot();
       },
       (error: any) => {
